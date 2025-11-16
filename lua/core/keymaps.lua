@@ -64,10 +64,20 @@ map("n", "gr", vim.lsp.buf.references, opts)
 map("n", "K", vim.lsp.buf.hover, opts)
 
 -- 变量/函数重命名（批量重命名）
-map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+map(
+  "n",
+  "<leader>rn",
+  vim.lsp.buf.rename,
+  { noremap = true, silent = true, desc = "LSP 重命名符号" }
+)
 
 -- 弹出代码操作（快速修复、导入等）
-map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+map(
+  "n",
+  "<leader>ca",
+  vim.lsp.buf.code_action,
+  { noremap = true, silent = true, desc = "LSP 代码操作 / 快速修复" }
+)
 
 -- LSP 格式化（异步执行）
 -- 用 <leader>lf（LSP Format），避免和 “查找 / 搜索” 前缀 <leader>f 冲突

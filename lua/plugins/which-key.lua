@@ -1,11 +1,10 @@
 -- lua/plugins/which-key.lua
--- 按下 <leader> / g 等前缀时，弹出快捷键提示菜单
+-- 最终稳定版：立即触发、最少改动、自动根据 desc 显示描述
+-- 并为所有 leader 前缀加上中文分组名称
 
 return {
   "folke/which-key.nvim",
-
-  -- 不需要很早加载，等 Neovim 空闲时加载即可
-  event = "VeryLazy",
+  event = "VimEnter",
 
   config = function()
     local ok, wk = pcall(require, "which-key")
@@ -14,67 +13,68 @@ return {
       return
     end
 
-    ---------------------------------------------------------------------------
-    -- 1. 基础外观配置（使用新字段名：win / replace）
-    ---------------------------------------------------------------------------
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+
     wk.setup({
-      -- 开哪些小功能
-      plugins = {
-        marks = true,       -- 显示 mark
-        registers = true,   -- 显示寄存器
-        spelling = false,   -- 拼写建议先关掉
-      },
-
-      -- ✅ 新版用 win，替代旧的 window
+      delay = 0,
       win = {
-        border = "rounded", -- 窗口圆角边框
-        position = "bottom",
-        margin = { 1, 1, 1, 1 },
-        padding = { 1, 2, 1, 2 },
+        border = "rounded",
+        padding = { 1, 2 },
+        title = true,
+        title_pos = "center",
       },
-
-      -- 布局相关
       layout = {
-        spacing = 4,        -- 各组之间的间距
-        align = "left",
+        spacing = 3,
       },
 
-      icons = {
-        breadcrumb = "»",
-        separator  = "➜",
-        group      = "+",
-      },
-
-      -- ✅ 新版用 replace，替代旧的 key_labels
-      --    用来在提示里“重命名按键”显示，不影响真实键位。
-      replace = {
-        ["<leader>"] = "SPC",
+      triggers = {
+        { "<leader>", mode = { "n", "v" } },
       },
     })
 
-    ---------------------------------------------------------------------------
-    -- 2. 给 <leader> 下的前缀分组，并起一个中文名字（只影响显示）
-    --
-    --    真正的功能还是你 core/keymaps.lua 里的映射，这里只是说明分类。
-    ---------------------------------------------------------------------------
+    ----------------------------------------------------------------------
+    -- 这里是分组：which-key 会自动用你 keymaps.lua 的 desc 显示子项
+    ----------------------------------------------------------------------
     wk.add({
-      -- 查找 / 搜索相关（ff / fg / fs / fb / fh / /）
-      { "<leader>f", group = "查找 / 搜索", mode = "n" },
 
-      -- 诊断 / LSP 相关（<leader>de 等）
-      { "<leader>d", group = "诊断 / LSP", mode = "n" },
+      -- ========================
+      -- 文件 / 搜索 (Telescope)
+      -- ========================
+      { "<leader>f", group = "文件 / 搜索", mode = "n" },
 
-      -- 文档 / 帮助（<leader>km）
-      { "<leader>k", group = "文档 / 帮助", mode = "n" },
+      -- ========================
+      -- 终端 / 标签页 / Make / Run
+      -- ========================
+      { "<leader>t", group = "终端 / 标签页", mode = "n" },
 
-      -- 终端 / 任务（<leader>tt / tm / tr）
-      { "<leader>t", group = "终端 / 任务", mode = "n" },
-
-      -- Windows 剪贴板（<leader>y）
+      -- ========================
+      -- Windows 剪贴板同步
+      -- ========================
       { "<leader>y", group = "Windows 剪贴板", mode = { "n", "v" } },
 
-      -- LSP 专用前缀（比如 <leader>lf：格式化）
-      { "<leader>l", group = "LSP / 格式化", mode = "n" },
+      -- ========================
+      -- LSP 系列
+      -- ========================
+      { "<leader>l", group = "LSP 操作", mode = "n" },
+      { "<leader>r", group = "LSP 重命名 / 引用 / 实现", mode = "n" },
+      { "<leader>c", group = "LSP 代码操作", mode = "n" },
+
+      -- ========================
+      -- 文档 / 帮助
+      -- ========================
+      { "<leader>k", group = "文档 / 帮助", mode = "n" },
+
+      -- ========================
+      -- 文件树
+      -- ========================
+      { "<leader>e", group = "文件树", mode = "n" },
+
+      -- ========================
+      -- 诊断
+      -- ========================
+      { "<leader>d", group = "诊断 (Diagnostics)", mode = "n" },
+
     })
   end,
 }
