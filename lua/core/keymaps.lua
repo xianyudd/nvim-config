@@ -243,3 +243,6 @@ map(
   { noremap = true, silent = true, desc = "上一个标签页" }
 )
 
+
+map("n", "<leader>as", ":AutoSaveToggle<CR>", { noremap = true, silent = true, desc = "切换自动保存" })
+

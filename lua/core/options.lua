@@ -41,3 +41,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   command = "set fileformat=unix",
 })
 
+-- ==========================
+-- Persistent Undo（退出 nvim 后仍可 undo）
+-- ==========================
+opt.undofile = true
+opt.undolevels = 10000
+opt.undoreload = 10000
+
+-- undodir：放到 nvim 的 state 目录（更合理）
+local undodir = vim.fn.stdpath("state") .. "/undo//"
+vim.fn.mkdir(undodir, "p")
+opt.undodir = undodir
+

@@ -4,6 +4,7 @@
 -- 1. 加载基础配置（行号、缩进、自动 LF 等）
 require("core.options")
 require("core.keymaps")
+require("core.autocmds")
 
 -- 2. 初始化 lazy.nvim 插件管理器
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
