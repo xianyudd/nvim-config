@@ -85,11 +85,14 @@ map("n", "<leader>lf", function()
   vim.lsp.buf.format({ async = true })
 end, { noremap = true, silent = true, desc = "LSP 格式化当前文件" })
 
--- 下一个诊断信息（错误 / 警告）
-map("n", "]d", vim.diagnostic.goto_next, opts)
+-- 下一个 / 上一个诊断（vim.diagnostic.jump，替代已弃用的 goto_next/prev）
+map("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { noremap = true, silent = true, desc = "下一个诊断" })
 
--- 上一个诊断信息
-map("n", "[d", vim.diagnostic.goto_prev, opts)
+map("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { noremap = true, silent = true, desc = "上一个诊断" })
 
 -- 弹出诊断浮窗（改用 <leader>de，避免和 NvimTree 冲突）
 map(

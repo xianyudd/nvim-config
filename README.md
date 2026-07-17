@@ -142,7 +142,7 @@ nvim
 
 首次启动时：
 
-1. `init.lua` 会加载 lazy.nvim（如未安装，会自动拉取）。
+1. `init.lua` 会加载 lazy.nvim；若 `stdpath("data")/lazy/lazy.nvim` 不存在，会用 `git clone --filter=blob:none --branch=stable` 自动安装。需要本机已安装 Git 且能访问 GitHub；失败时会打印错误并中止加载插件（不会再出现含糊的 `module 'lazy' not found`）。也可手动克隆到该路径。
 2. lazy.nvim 依据 `lua/plugins/init.lua` 自动安装所有插件。
 3. 安装完成后，可执行 `:Lazy` 查看插件状态，执行 `:checkhealth` 检查整体健康状况。
 

@@ -24,6 +24,8 @@ return {
         "lua",
         "python",
         "go",
+        "rust",
+        "toml",
         "javascript",
         "typescript",
         "json",
