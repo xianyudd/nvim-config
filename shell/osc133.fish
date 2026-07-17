@@ -1,19 +1,15 @@
-# OSC 133 prompt start for Neovim shell integration (fish 3.x).
-# Source only when $NVIM is set. Skip if fish already emits OSC 133 natively (4+).
-# Does not wrap or re-run commands.
+# OSC 133 prompt-start compatibility for fish 3.x in Neovim terminals.
+# fish 4+ provides native OSC 133 shell integration.
 
-if not set -q NVIM
+if not set -q NVIM; or test -z "$NVIM"
     return
 end
 
-# fish 4+ ships native shell integration (OSC 133); do not double-inject.
-set -l _nvim_fish_ver (fish --version | string match -r '[0-9]+\.[0-9]+' | head -n1)
-set -l _nvim_fish_major (string split . -- $_nvim_fish_ver)[1]
-if test -n "$_nvim_fish_major"; and test "$_nvim_fish_major" -ge 4 2>/dev/null
+set -l fish_major (string split . -- $version)[1]
+if test "$fish_major" -ge 4
     return
 end
 
-# Already installed (re-source / double conf.d)
 if functions -q __nvim_osc133_prompt
     return
 end
