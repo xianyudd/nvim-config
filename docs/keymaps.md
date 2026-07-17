@@ -191,7 +191,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
-* `<leader>yy` — 复制 **上一条终端命令 + 完整输出** 到 Windows 剪贴板（依赖 OSC 133 / `:terminal` 或 toggleterm）
+* `<leader>Y` — 复制 **上一条已完成终端块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133；运行中拒绝；不占用 `<leader>y` 前缀）
 
 内部实现：
 
@@ -422,7 +422,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
-* `<leader>yy` — 复制 **上一条终端命令 + 完整输出** 到 Windows 剪贴板（依赖 OSC 133 / `:terminal` 或 toggleterm）
+* `<leader>Y` — 复制 **上一条已完成终端块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133；运行中拒绝；不占用 `<leader>y` 前缀）
 
 内部实现：
 
@@ -685,7 +685,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
-* `<leader>yy` — 复制 **上一条终端命令 + 完整输出** 到 Windows 剪贴板（依赖 OSC 133 / `:terminal` 或 toggleterm）
+* `<leader>Y` — 复制 **上一条已完成终端块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133；运行中拒绝；不占用 `<leader>y` 前缀）
 
 内部实现：
 
