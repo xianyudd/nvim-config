@@ -191,6 +191,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
+* `<leader>Y` — 复制 **最后一个已完成的终端命令块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133 A 边界；不占用 `<leader>y` 前缀）
 
 内部实现：
 
@@ -421,6 +422,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
+* `<leader>Y` — 复制 **最后一个已完成的终端命令块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133 A 边界；不占用 `<leader>y` 前缀）
 
 内部实现：
 
@@ -683,6 +685,7 @@
 
 * `<leader>y`（普通模式）— 复制 **全文** 到 Windows 剪贴板
 * 选中一段文本后 `<leader>y`（可视模式）— 复制选中内容到 Windows 剪贴板
+* `<leader>Y` — 复制 **最后一个已完成的终端命令块**（含提示符行 + 命令 + stdout/stderr）到 Windows 剪贴板（OSC 133 A 边界；不占用 `<leader>y` 前缀）
 
 内部实现：
 

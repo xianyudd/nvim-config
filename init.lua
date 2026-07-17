@@ -5,6 +5,7 @@
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")
+require("core.term_yank").setup()
 
 -- 2. 初始化 lazy.nvim 插件管理器（缺失时自动 clone）
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
